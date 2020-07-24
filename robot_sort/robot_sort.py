@@ -99,12 +99,13 @@ class SortingRobot:
         self.set_light_on()
         
         while self.light_is_on():
-            # if item is present
+            # if bigger item is present
             self.swap_item()
             while self.can_move_right():
-                # move right and held item with floor item
+                # move right and compare held item with floor item
                 self.move_right()
                 if self.compare_item() == 1:
+                    # swap for item if it is greater
                     self.swap_item()
             
             while self.can_move_left() and self.compare_item() is not None:
@@ -116,6 +117,9 @@ class SortingRobot:
             if self.can_move_right():
                 # Move back right until no more items and room to move
                 self.move_right()
+                if self.compare_item() == 1:
+                    # swap for item if it is greater
+                    self.swap_item()
             else:
                 self.set_light_off()
 
